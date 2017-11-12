@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello, world!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css"/>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Carousel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<main role="main">
+
+
+    <div class="inicio">
+        <div class="container">
+            <form action="#" th:action="@{/obra}" th:object="${acervo}" method="post">
+                <input type="hidden" th:field="*{id}" />
+                <div class="form-group">
+                    <label for="obra">Nome da obra</label>
+                    <input type="text" class="form-control" id="obra" th:field="*{obra}"
+                           aria-describedby="emailHelp"
+                           placeholder="Enter email"/>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="autor">Autor</label>
+                    <input type="text" class="form-control" id="autor" th:field="*{autor}"
+                           placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <label for="local">Local</label>
+                    <input type="text" class="form-control" id="local" th:field="*{local}"
+                           placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" class="form-control" id="descricao" th:field="*{descricao}"
+                           placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <label for="imagem">Imagem</label>
+                    <input type="text" class="form-control" id="imagem" th:field="*{imagem}"
+                           placeholder="Password"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <hr class="featurette-divider"/>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Obra</th>
+                <th scope="col">Descricao</th>
+                <th scope="col">Local da Exposição</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="obra : ${obras}">
+                <td th:text="${obra.id}">A Smoke Test'</td>
+                <td th:text="${obra.obra}">Otto</td>
+                <td th:text="${obra.descricao}">@mdo</td>
+                <td th:text="${obra.local}">@mdo</td>
+                <td th:text="${obra.autor}">@mdo</td>
+                <td ><img th:src="${obra.imagem}" width="100" class="img-thumbnail rounded" /></td>
+                <td >
+                    <form action="#" th:action="@{/obra/deletar/{id}(id=${obra.id})}" method="post">
+                        <a th:href="@{/obra/alterar/}+''+${obra.id}" class="btn btn-info btn-sm">Alterar</a>
+                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                    </form>
+
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
+</main>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</body>
+</html>
