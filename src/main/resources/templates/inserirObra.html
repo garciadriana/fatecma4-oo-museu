@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello, world!</title>
+    <title>Museu</title>
     <!-- Required meta tags -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -15,7 +15,7 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Carousel</a>
+        <a class="navbar-brand" href="/">Museu</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Acervo<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link disabled" href="#">Exposições</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link disabled" href="#">Restauração</a>
                 </li>
             </ul>
             <form class="form-inline mt-2 mt-md-0">
@@ -50,32 +50,29 @@
                 <div class="form-group">
                     <label for="obra">Nome da obra</label>
                     <input type="text" class="form-control" id="obra" th:field="*{obra}"
-                           aria-describedby="emailHelp"
-                           placeholder="Enter email"/>
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
-                    </small>
+                           placeholder="Digite o nome da obra"/>
                 </div>
                 <div class="form-group">
                     <label for="autor">Autor</label>
                     <input type="text" class="form-control" id="autor" th:field="*{autor}"
-                           placeholder="Password"/>
+                           placeholder="Digite o nome do autor da obra"/>
                 </div>
                 <div class="form-group">
                     <label for="local">Local</label>
                     <input type="text" class="form-control" id="local" th:field="*{local}"
-                           placeholder="Password"/>
+                           placeholder="Digite onde a obra está localizada"/>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
                     <input type="text" class="form-control" id="descricao" th:field="*{descricao}"
-                           placeholder="Password"/>
+                           placeholder="Digite a descrição da obra"/>
                 </div>
                 <div class="form-group">
                     <label for="imagem">Imagem</label>
                     <input type="text" class="form-control" id="imagem" th:field="*{imagem}"
-                           placeholder="Password"/>
+                           placeholder="Digite a URL da localização da imagem"/>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Cadastrar obra</button>
             </form>
         </div>
     </div>
@@ -97,11 +94,11 @@
             </thead>
             <tbody>
             <tr th:each="obra : ${obras}">
-                <td th:text="${obra.id}">A Smoke Test'</td>
-                <td th:text="${obra.obra}">Otto</td>
-                <td th:text="${obra.descricao}">@mdo</td>
-                <td th:text="${obra.local}">@mdo</td>
-                <td th:text="${obra.autor}">@mdo</td>
+                <td th:text="${obra.id}">Obra ID</td>
+                <td th:text="${obra.obra}">Obra Nome</td>
+                <td th:text="${obra.descricao}">Obra Descrição</td>
+                <td th:text="${obra.local}">Obra Local</td>
+                <td th:text="${obra.autor}">Obra Autor</td>
                 <td ><img th:src="${obra.imagem}" width="100" class="img-thumbnail rounded" /></td>
                 <td >
                     <form action="#" th:action="@{/obra/deletar/{id}(id=${obra.id})}" method="post">
@@ -118,8 +115,8 @@
 
     <!-- FOOTER -->
     <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p class="float-right"><a href="#">Voltar ao topo</a></p>
+        <p>&copy; Adriana e Mileny - ADSMA4 - 2017 &middot;</p>
     </footer>
 
 </main>

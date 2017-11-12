@@ -2,6 +2,7 @@ package br.com.fatec.museu.controller;
 
 import br.com.fatec.museu.dao.AcervoDAO;
 import br.com.fatec.museu.model.Acervo;
+import java.util.Iterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,18 @@ public class IndexController {
 
     @RequestMapping("/")
     public String listarTodos(Model model) {
-        model.addAttribute("obras", dao.findAll());
+        final Iterable<Acervo> todasAsObras = dao.findAll();
+        model.addAttribute("obras", todasAsObras);
+        Iterator i = todasAsObras.iterator();
+        if(i.hasNext()){
+            model.addAttribute("obra1", i.next());
+        }
+        if(i.hasNext()){
+            model.addAttribute("obra2", i.next());
+        }
+        if(i.hasNext()){
+            model.addAttribute("obra3", i.next());
+        }
         return "template";
     }
 
