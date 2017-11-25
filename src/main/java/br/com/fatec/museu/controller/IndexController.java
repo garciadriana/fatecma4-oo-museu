@@ -2,10 +2,15 @@ package br.com.fatec.museu.controller;
 
 import br.com.fatec.museu.dao.AcervoDAO;
 import br.com.fatec.museu.model.Acervo;
+import br.com.fatec.museu.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -13,39 +18,30 @@ public class IndexController {
     @Autowired
     private AcervoDAO dao;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String listarTodos(Model model) {
-        model.addAttribute("obras", dao.findAll());
+        final List<Acervo> todasAsObras = dao.findAll();
+        if(todasAsObras.size() < 3){
+            model.addAttribute("obras", todasAsObras);
+        }else{
+            model.addAttribute("obras", todasAsObras.subList(0, 3));
+        }
         return "template";
     }
 
-    @GetMapping("/obra")
-    public String paginaAcervo(Model model) {
-        model.addAttribute("acervo", new Acervo());
-        model.addAttribute("obras", dao.findAll());
-        return "inserirObra";
+    @PostMapping("/login")
+    public String login(@ModelAttribute Usuario usuario, HttpSession session) {
+        if("admin".equals(usuario.getUsuario()) && "umanoitenomuseu".equals(usuario.getSenha())){
+            session.setAttribute("usuarioLogado",true);
+            return "redirect:/admin/obra";
+        }
+        return "redirect:/";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
-    @GetMapping("/obra/alterar/{id}")
-    public String paginaAcervo(@PathVariable int id, Model model) {
-        model.addAttribute("acervo", dao.findOne(id));
-        model.addAttribute("obras", dao.findAll());
-        return "inserirObra";
-    }
 
-    @PostMapping("/obra")
-    public String inserirAcervo(@ModelAttribute Acervo acervo, Model model) {
-        dao.save(acervo);
-        model.addAttribute("acervo", new Acervo());
-        model.addAttribute("obras", dao.findAll());
-        return "inserirObra";
-    }
-
-    @PostMapping("/obra/deletar/{id}")
-    public String deletarAcervo(@PathVariable int id, Model model) {
-        dao.delete(id);
-        model.addAttribute("acervo", new Acervo());
-        model.addAttribute("obras", dao.findAll());
-        return "redirect:/obra/";
-    }
 }

@@ -8,7 +8,6 @@ public class Acervo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cod_genero")
     private int id;
     private String obra;
     private String descricao;
