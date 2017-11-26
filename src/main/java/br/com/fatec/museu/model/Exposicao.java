@@ -12,10 +12,11 @@ public class Exposicao {
     private int id;
     private String titulo;
     private boolean temporario;
+    @Column(length = 1024)
     private String descricao;
     private String sala;
-    private LocalDate dataInicio;
-    private LocalDate datafim;
+    private String dataInicio;
+    private String dataFim;
     private String imagem;
 
     public int getId() {
@@ -58,20 +59,20 @@ public class Exposicao {
         this.sala = sala;
     }
 
-    public LocalDate getDataInicio() {
+    public String getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(String dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public LocalDate getDatafim() {
-        return datafim;
+    public String getDataFim() {
+        return dataFim;
     }
 
-    public void setDatafim(LocalDate datafim) {
-        this.datafim = datafim;
+    public void setDataFim(String dataFim) {
+        this.dataFim = dataFim;
     }
 
     public String getImagem() {

@@ -54,10 +54,7 @@
     <div class="container marketing">
 
         <div th:each="obra : ${obras}">
-            <hr class="featurette-divider"/>
-
             <div class="row featurette">
-
                 <div class="col-md-7">
                     <h2 class="featurette-heading"  th:text="${obra.getObra()}"><span class="text-muted">Subtítulo</span></h2>
                     <p class="lead" th:text="${obra.getDescricao()}"></p>
@@ -67,7 +64,6 @@
                          alt="Generic placeholder image"/>
                 </div>
             </div>
-
             <hr class="featurette-divider"/>
         </div>
     </div>

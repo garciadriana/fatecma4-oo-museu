@@ -10,6 +10,7 @@ public class Acervo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String obra;
+    @Column(length = 1024)
     private String descricao;
     private String autor;
     private String local;

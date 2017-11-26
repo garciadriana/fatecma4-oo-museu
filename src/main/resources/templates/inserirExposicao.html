@@ -56,34 +56,44 @@
 
     <div class="inicio">
         <div class="container">
-            <form action="#" th:action="@{/admin/obra}" th:object="${acervo}" method="post">
+            <form action="#" th:action="@{/admin/exposicao}" th:object="${exposicao}" method="post">
                 <input type="hidden" th:field="*{id}" />
                 <div class="form-group">
-                    <label for="obra">Nome da obra</label>
-                    <input type="text" class="form-control" id="obra" th:field="*{obra}"
-                           placeholder="Digite o nome da obra"/>
+                    <label for="titulo">Título</label>
+                    <input type="text" class="form-control" id="titulo" th:field="*{titulo}"
+                           placeholder="Digite o título da exposição"/>
                 </div>
                 <div class="form-group">
-                    <label for="autor">Autor</label>
-                    <input type="text" class="form-control" id="autor" th:field="*{autor}"
-                           placeholder="Digite o nome do autor da obra"/>
-                </div>
-                <div class="form-group">
-                    <label for="local">Local</label>
-                    <input type="text" class="form-control" id="local" th:field="*{local}"
-                           placeholder="Digite onde a obra está localizada"/>
+                    <label for="temporario">Tipo</label>
+                    <input type="text" class="form-control" id="temporario" th:field="*{temporario}"
+                           placeholder="Digite o tipo da exposição"/>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
                     <input type="text" class="form-control" id="descricao" th:field="*{descricao}"
+                           placeholder="Digite onde a exposição está localizada"/>
+                </div>
+                <div class="form-group">
+                    <label for="sala">Sala</label>
+                    <input type="text" class="form-control" id="sala" th:field="*{sala}"
                            placeholder="Digite a descrição da obra"/>
+                </div>
+                <div class="form-group">
+                    <label for="dataInicio">Data de Início</label>
+                    <input type="text" class="form-control" id="dataInicio" th:field="*{dataInicio}"
+                           placeholder="Digite a URL da localização da imagem"/>
+                </div>
+                <div class="form-group">
+                    <label for="datafim">Data de Fim</label>
+                    <input type="text" class="form-control" id="dataFim" th:field="*{dataFim}"
+                           placeholder="Digite a URL da localização da imagem"/>
                 </div>
                 <div class="form-group">
                     <label for="imagem">Imagem</label>
                     <input type="text" class="form-control" id="imagem" th:field="*{imagem}"
                            placeholder="Digite a URL da localização da imagem"/>
                 </div>
-                <button type="submit" class="btn btn-primary">Cadastrar obra</button>
+                <button type="submit" class="btn btn-primary">Cadastrar exposição</button>
             </form>
         </div>
     </div>
@@ -95,25 +105,28 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Obra</th>
-                <th scope="col">Descricao</th>
-                <th scope="col">Local da Exposição</th>
-                <th scope="col">Autor</th>
+                <th scope="col">Título</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Sala</th>
+                <th scope="col">Data de Início</th>
+                <th scope="col">Data de Fim</th>
                 <th scope="col">Imagem</th>
-                <th scope="col">Ações</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="obra : ${obras}">
-                <td th:text="${obra.id}">Obra ID</td>
-                <td th:text="${obra.obra}">Obra Nome</td>
-                <td th:text="${obra.descricao}">Obra Descrição</td>
-                <td th:text="${obra.local}">Obra Local</td>
-                <td th:text="${obra.autor}">Obra Autor</td>
-                <td ><img th:src="${obra.imagem}" width="100" class="img-thumbnail rounded" /></td>
+            <tr th:each="exposicao : ${exposicaos}">
+                <td th:text="${exposicao.id}">ID</td>
+                <td th:text="${exposicao.titulo}">Título</td>
+                <td th:text="${exposicao.temporario}">Tipo</td>
+                <td th:text="${exposicao.descricao}">Descrição</td>
+                <td th:text="${exposicao.sala}">Sala</td>
+                <td th:text="${exposicao.dataInicio}">Data do Início</td>
+                <td th:text="${exposicao.dataFim}">Data do Fim</td>
+                <td ><img th:src="${exposicao.imagem}" width="100" class="img-thumbnail rounded" /></td>
                 <td >
-                    <form action="#" th:action="@{/admin/obra/deletar/{id}(id=${obra.id})}" method="post">
-                        <a th:href="@{/admin/obra/alterar/}+''+${obra.id}" class="btn btn-info btn-sm">Alterar</a>
+                    <form action="#" th:action="@{/admin/exposicao/deletar/{id}(id=${exposicao.id})}" method="post">
+                        <a th:href="@{/admin/exposicao/alterar/}+''+${exposicao.id}" class="btn btn-info btn-sm">Alterar</a>
                         <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
                     </form>
 
