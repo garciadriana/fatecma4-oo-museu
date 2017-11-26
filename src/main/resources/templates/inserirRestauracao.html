@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Museu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css"/>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">Museu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
+                    <a class="nav-link" href="/admin/obra">Gerenciar Acervo <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
+                    <a class="nav-link" href="/admin/exposicao">Gerenciar Exposicao <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/obras">Obras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/exposicao">Exposição</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Restauração</a>
+                </li>
+            </ul>
+            <div th:if="${session.usuarioLogado} == null">
+                <form class="form-inline mt-2 mt-md-0" th:action="@{/login}"  method="post">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Usuario"  name="usuario" aria-label="Usuario"/>
+                    <input class="form-control mr-sm-2" type="password" placeholder="Senha" name="senha"  aria-label="Senha"/>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Entrar</button>
+                </form>
+            </div>
+            <div th:if="${session.usuarioLogado} != null">
+                <a href="/logout" class="btn btn-outline-success my-2 my-sm-0">Logout</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main role="main">
+
+
+    <div class="inicio">
+        <div class="container">
+            <form action="#" th:action="@{/admin/exposicao}" th:object="${exposicao}" method="post">
+                <input type="hidden" th:field="*{id}" />
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" class="form-control" id="titulo" th:field="*{titulo}"
+                           placeholder="Digite o título da exposição"/>
+                </div>
+                <div class="form-group">
+                    <label for="temporario">Tipo</label>
+                    <input type="text" class="form-control" id="temporario" th:field="*{temporario}"
+                           placeholder="Digite o tipo da exposição"/>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" class="form-control" id="descricao" th:field="*{descricao}"
+                           placeholder="Digite onde a exposição está localizada"/>
+                </div>
+                <div class="form-group">
+                    <label for="sala">Sala</label>
+                    <input type="text" class="form-control" id="sala" th:field="*{sala}"
+                           placeholder="Digite a descrição da obra"/>
+                </div>
+                <div class="form-group">
+                    <label for="dataInicio">Data de Início</label>
+                    <input type="text" class="form-control" id="dataInicio" th:field="*{dataInicio}"
+                           placeholder="Digite a URL da localização da imagem"/>
+                </div>
+                <div class="form-group">
+                    <label for="datafim">Data de Fim</label>
+                    <input type="text" class="form-control" id="dataFim" th:field="*{dataFim}"
+                           placeholder="Digite a URL da localização da imagem"/>
+                </div>
+                <div class="form-group">
+                    <label for="imagem">Imagem</label>
+                    <input type="text" class="form-control" id="imagem" th:field="*{imagem}"
+                           placeholder="Digite a URL da localização da imagem"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar exposição</button>
+            </form>
+        </div>
+    </div>
+
+    <hr class="featurette-divider"/>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Sala</th>
+                <th scope="col">Data de Início</th>
+                <th scope="col">Data de Fim</th>
+                <th scope="col">Imagem</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="exposicao : ${exposicaos}">
+                <td th:text="${exposicao.id}">ID</td>
+                <td th:text="${exposicao.titulo}">Título</td>
+                <td th:text="${exposicao.temporario}">Tipo</td>
+                <td th:text="${exposicao.descricao}">Descrição</td>
+                <td th:text="${exposicao.sala}">Sala</td>
+                <td th:text="${exposicao.dataInicio}">Data do Início</td>
+                <td th:text="${exposicao.dataFim}">Data do Fim</td>
+                <td ><img th:src="${exposicao.imagem}" width="100" class="img-thumbnail rounded" /></td>
+                <td >
+                    <form action="#" th:action="@{/admin/exposicao/deletar/{id}(id=${exposicao.id})}" method="post">
+                        <a th:href="@{/admin/exposicao/alterar/}+''+${exposicao.id}" class="btn btn-info btn-sm">Alterar</a>
+                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                    </form>
+
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="container">
+        <p class="float-right"><a href="#">Voltar ao topo</a></p>
+        <p>&copy; Adriana e Mileny - ADSMA4 - 2017 &middot;</p>
+    </footer>
+
+</main>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</body>
+</html>
