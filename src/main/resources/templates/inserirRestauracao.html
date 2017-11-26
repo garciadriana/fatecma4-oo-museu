@@ -33,13 +33,13 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="/obras">Obras</a>
+                    <a class="nav-link " href="/obras">Obras</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="/exposicao">Exposição</a>
+                    <a class="nav-link " href="/exposicao">Exposição</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="/restauracao">Restauração</a>
+                <li class="nav-item" th:if="${session.usuarioLogado} != null">
+                    <a class="nav-link " href="/restauracao">Restauração</a>
                 </li>
             </ul>
             <div th:if="${session.usuarioLogado} == null">

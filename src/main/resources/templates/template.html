@@ -39,7 +39,7 @@
                 <li class="nav-item">
                     <a class="nav-link " href="/exposicao">Exposição</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:if="${session.usuarioLogado} != null">
                     <a class="nav-link " href="/restauracao">Restauração</a>
                 </li>
             </ul>
