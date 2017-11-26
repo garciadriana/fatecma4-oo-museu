@@ -32,7 +32,7 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active" th:if="${session.usuarioLogado} != null">
-                    <a class="nav-link" href="/admin/restauracao">Gerenciar restauracao <span
+                    <a class="nav-link" href="/admin/restauracao">Gerenciar Restauracao <span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -72,7 +72,8 @@
                     <h2 class="featurette-heading"  th:text="${restauracao.getTitulo()}"><span
                             class="text-muted">Subtítulo</span></h2>
                     <p class="lead"   th:text="${restauracao.getDescricao()}">Descrição</p>
-                    <p class="lead"><span th:text="${restauracao.getDataInicio()}"></span> - <span th:text="${restauracao.getDataFim()}"></span></p>
+                    <p class="lead">Hora de Início:<span th:text="${restauracao.getDataInicio()}"></span><br />
+                    Hora de Fim:<span th:text="${restauracao.getDataFim()}"></span></p>
                 </div>
                 <div class="col-md-5 order-md-1">
                     <img class="featurette-image img-fluid mx-auto" th:src="${restauracao.getImagem()}"
