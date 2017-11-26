@@ -25,7 +25,12 @@
                     <a class="nav-link" href="/admin/obra">Gerenciar Acervo <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active" th:if="${session.usuarioLogado} != null">
-                    <a class="nav-link" href="/admin/exposicao">Gerenciar Exposicao <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/admin/exposicao">Gerenciar Exposicao <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
+                    <a class="nav-link" href="/admin/restauracao">Gerenciar restauracao <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="/obras">Obras</a>
@@ -34,7 +39,7 @@
                     <a class="nav-link disabled" href="/exposicao">Exposição</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Restauração</a>
+                    <a class="nav-link disabled" href="/restauracao">Restauração</a>
                 </li>
             </ul>
             <div th:if="${session.usuarioLogado} == null">
@@ -53,10 +58,9 @@
 
 <main role="main">
 
-
     <div class="inicio">
         <div class="container">
-            <form action="#" th:action="@{/admin/exposicao}" th:object="${exposicao}" method="post">
+            <form action="#" th:action="@{/admin/restauracao}" th:object="${restauracao}" method="post">
                 <input type="hidden" th:field="*{id}" />
                 <div class="form-group">
                     <label for="titulo">Título</label>
@@ -115,18 +119,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="exposicao : ${exposicaos}">
-                <td th:text="${exposicao.id}">ID</td>
-                <td th:text="${exposicao.titulo}">Título</td>
-                <td th:text="${exposicao.temporario}">Tipo</td>
-                <td th:text="${exposicao.descricao}">Descrição</td>
-                <td th:text="${exposicao.sala}">Sala</td>
-                <td th:text="${exposicao.dataInicio}">Data do Início</td>
-                <td th:text="${exposicao.dataFim}">Data do Fim</td>
-                <td ><img th:src="${exposicao.imagem}" width="100" class="img-thumbnail rounded" /></td>
+            <tr th:each="restauracao : ${restauracaos}">
+                <td th:text="${restauracao.id}">ID</td>
+                <td th:text="${restauracao.titulo}">Título</td>
+                <td th:text="${restauracao.temporario}">Tipo</td>
+                <td th:text="${restauracao.descricao}">Descrição</td>
+                <td th:text="${restauracao.sala}">Sala</td>
+                <td th:text="${restauracao.dataInicio}">Data do Início</td>
+                <td th:text="${restauracao.dataFim}">Data do Fim</td>
+                <td ><img th:src="${restauracao.imagem}" width="100" class="img-thumbnail rounded" /></td>
                 <td >
-                    <form action="#" th:action="@{/admin/exposicao/deletar/{id}(id=${exposicao.id})}" method="post">
-                        <a th:href="@{/admin/exposicao/alterar/}+''+${exposicao.id}" class="btn btn-info btn-sm">Alterar</a>
+                    <form action="#" th:action="@{/admin/restauracao/deletar/{id}(id=${restauracao.id})}" method="post">
+                        <a th:href="@{/admin/restauracao/alterar/}+''+${restauracao.id}" class="btn btn-info btn-sm">Alterar</a>
                         <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
                     </form>
 

@@ -31,6 +31,10 @@
                     <a class="nav-link" href="/admin/exposicao">Gerenciar Exposicao <span
                             class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
+                    <a class="nav-link" href="/admin/restauracao">Gerenciar restauracao <span
+                            class="sr-only">(current)</span></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="/obras">Obras</a>
                 </li>
@@ -38,7 +42,7 @@
                     <a class="nav-link disabled" href="/exposicao">Exposição</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Restauração</a>
+                    <a class="nav-link disabled" href="/restauracao">Restauração</a>
                 </li>
             </ul>
             <div th:if="${session.usuarioLogado} == null">
@@ -58,19 +62,20 @@
 </header>
 
 <main role="main">
+    <div class="inicio"></div>
     <div class="container marketing">
 
-        <div th:each="exposicao : ${exposicaos}">
+        <div th:each="restauracao : ${restauracaos}">
 
             <div class="row featurette">
                 <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading"  th:text="${exposicao.getTitulo()}"><span
+                    <h2 class="featurette-heading"  th:text="${restauracao.getTitulo()}"><span
                             class="text-muted">Subtítulo</span></h2>
-                    <p class="lead"   th:text="${exposicao.getDescricao()}">Descrição</p>
-                    <p class="lead"><span th:text="${exposicao.getDataInicio()}"></span> - <span th:text="${exposicao.getDataFim()}"></span></p>
+                    <p class="lead"   th:text="${restauracao.getDescricao()}">Descrição</p>
+                    <p class="lead"><span th:text="${restauracao.getDataInicio()}"></span> - <span th:text="${restauracao.getDataFim()}"></span></p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <img class="featurette-image img-fluid mx-auto" th:src="${exposicao.getImagem()}"
+                    <img class="featurette-image img-fluid mx-auto" th:src="${restauracao.getImagem()}"
                          alt="Generic placeholder image"/>
                 </div>
             </div>

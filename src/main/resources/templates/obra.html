@@ -26,6 +26,14 @@
                 <li class="nav-item active" th:if="${session.usuarioLogado} != null">
                     <a class="nav-link" href="/admin/obra">Gerenciar Acervo <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
+                    <a class="nav-link" href="/admin/exposicao">Gerenciar Exposicao <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
+                    <a class="nav-link" href="/admin/restauracao">Gerenciar restauracao <span
+                            class="sr-only">(current)</span></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="/obras">Obras</a>
                 </li>
@@ -33,7 +41,7 @@
                     <a class="nav-link disabled" href="/exposicao">Exposição</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Restauração</a>
+                    <a class="nav-link disabled" href="/restauracao">Restauração</a>
                 </li>
             </ul>
             <div th:if="${session.usuarioLogado} == null">
@@ -51,6 +59,7 @@
 </header>
 
 <main role="main">
+    <div class="inicio"></div>
     <div class="container marketing">
 
         <div th:each="obra : ${obras}">

@@ -1,9 +1,9 @@
 package br.com.fatec.museu.controller;
 
-import br.com.fatec.museu.dao.AcervoDAO;
 import br.com.fatec.museu.dao.ExposicaoDAO;
-import br.com.fatec.museu.model.Acervo;
+import br.com.fatec.museu.dao.RestauracaoDAO;
 import br.com.fatec.museu.model.Exposicao;
+import br.com.fatec.museu.model.Restauracao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,48 +13,48 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class ExposicaoController {
+public class RestauracaoController {
 
     @Autowired
-    private ExposicaoDAO dao;
+    private RestauracaoDAO dao;
 
 
-    @GetMapping("/exposicao")
+    @GetMapping("/restauracao")
     public String paginaExposicao(Model model) {
-        model.addAttribute("acervo", new Exposicao());
-        model.addAttribute("exposicaos", dao.findAll());
-        return "exposicao";
+        model.addAttribute("restauracao", new Restauracao());
+        model.addAttribute("restauracaos", dao.findAll());
+        return "restauracao";
     }
 
 
 
-    @GetMapping("/admin/exposicao")
+    @GetMapping("/admin/restauracao")
     public String paginaAcervo(Model model) {
-        model.addAttribute("exposicao", new Exposicao());
-        model.addAttribute("exposicaos", dao.findAll());
-        return "inserirExposicao";
+        model.addAttribute("restauracao", new Restauracao());
+        model.addAttribute("restauracaos", dao.findAll());
+        return "inserirRestauracao";
     }
 
-    @GetMapping("/admin/exposicao/alterar/{id}")
+    @GetMapping("/admin/restauracao/alterar/{id}")
     public String paginaAcervo(@PathVariable int id, Model model) {
-        model.addAttribute("exposicao", dao.findOne(id));
-        model.addAttribute("exposicaos", dao.findAll());
-        return "inserirExposicao";
+        model.addAttribute("restauracao", dao.findOne(id));
+        model.addAttribute("restauracaos", dao.findAll());
+        return "inserirRestauracao";
     }
 
-    @PostMapping("/admin/exposicao")
-    public String inserirAcervo(@ModelAttribute Exposicao acervo, Model model) {
+    @PostMapping("/admin/restauracao")
+    public String inserirAcervo(@ModelAttribute Restauracao acervo, Model model) {
         dao.save(acervo);
-        model.addAttribute("exposicao", new Exposicao());
-        model.addAttribute("exposicaos", dao.findAll());
-        return "inserirExposicao";
+        model.addAttribute("restauracao", new Exposicao());
+        model.addAttribute("restauracaos", dao.findAll());
+        return "inserirRestauracao";
     }
 
-    @PostMapping("/admin/exposicao/deletar/{id}")
+    @PostMapping("/admin/restauracao/deletar/{id}")
     public String deletarAcervo(@PathVariable int id, Model model) {
         dao.delete(id);
-        model.addAttribute("exposicao", new Exposicao());
-        model.addAttribute("exposicaos", dao.findAll());
-        return "redirect:/admin/exposicao/";
+        model.addAttribute("restauracao", new Restauracao());
+        model.addAttribute("restauracaos", dao.findAll());
+        return "redirect:/admin/restauracao/";
     }
 }

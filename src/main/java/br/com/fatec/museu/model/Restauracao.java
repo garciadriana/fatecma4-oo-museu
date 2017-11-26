@@ -1,11 +1,10 @@
 package br.com.fatec.museu.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
-@Table(name = "exposicao")
+@Table(name = "restauracao")
 @Entity
-public class Exposicao {
+public class Restauracao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
