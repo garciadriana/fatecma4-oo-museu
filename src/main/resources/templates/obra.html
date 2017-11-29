@@ -23,17 +23,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
-                    <a class="nav-link" href="/admin/obra">Gerenciar Acervo <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
-                    <a class="nav-link" href="/admin/exposicao">Gerenciar Exposicao <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active" th:if="${session.usuarioLogado} != null">
-                    <a class="nav-link" href="/admin/restauracao">Gerenciar Restauracao <span
-                            class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/obras">Obras</a>
                 </li>
@@ -42,6 +31,16 @@
                 </li>
                 <li class="nav-item" th:if="${session.usuarioLogado} != null">
                     <a class="nav-link " href="/restauracao">Restauração</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Gerenciar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/admin/obra">Gerenciar Acervo <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="/admin/exposicao">Gerenciar Exposicao <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="/admin/restauracao">Gerenciar Restauracao <span class="sr-only">(current)</span></a>
+                    </div>
                 </li>
             </ul>
             <div th:if="${session.usuarioLogado} == null">
