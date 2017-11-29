@@ -31,7 +31,7 @@
                 <li class="nav-item" th:if="${session.usuarioLogado} != null">
                     <a class="nav-link " href="/restauracao">Restauração</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" th:if="${session.usuarioLogado} != null">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Gerenciar
                     </a>
