@@ -68,10 +68,17 @@
                     <input type="text" class="form-control" id="titulo" th:field="*{titulo}"
                            placeholder="Digite o título da exposição"/>
                 </div>
-                <div class="form-group">
-                    <label for="temporario">Tipo</label>
-                    <input type="text" class="form-control" id="temporario" th:field="*{temporario}"
-                           placeholder="Digite o tipo da exposição"/>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="temporario" id="temporario" value="true" th:field="*{temporario}"/>
+                        Temporário
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="temporario" id="temporario" value="false" th:field="*{temporario}"/>
+                        Permanente
+                    </label>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
@@ -85,12 +92,12 @@
                 </div>
                 <div class="form-group">
                     <label for="dataInicio">Data de Início</label>
-                    <input type="text" class="form-control" id="dataInicio" th:field="*{dataInicio}"
+                    <input type="date" class="form-control" id="dataInicio" th:field="*{dataInicio}"
                            placeholder="Digite a URL da localização da imagem"/>
                 </div>
                 <div class="form-group">
                     <label for="datafim">Data de Fim</label>
-                    <input type="text" class="form-control" id="dataFim" th:field="*{dataFim}"
+                    <input type="date" class="form-control" id="dataFim" th:field="*{dataFim}"
                            placeholder="Digite a URL da localização da imagem"/>
                 </div>
                 <div class="form-group">
@@ -123,7 +130,10 @@
             <tr th:each="exposicao : ${exposicaos}">
                 <td th:text="${exposicao.id}">ID</td>
                 <td th:text="${exposicao.titulo}">Título</td>
-                <td th:text="${exposicao.temporario}">Tipo</td>
+                <td>
+                    <div th:if="${exposicao.temporario}"><p>Temporário</p></div>
+                    <div th:unless="${exposicao.temporario}"><p>Permanente</p></div>
+                </td>
                 <td th:text="${exposicao.descricao}">Descrição</td>
                 <td th:text="${exposicao.sala}">Sala</td>
                 <td th:text="${exposicao.dataInicio}">Data do Início</td>

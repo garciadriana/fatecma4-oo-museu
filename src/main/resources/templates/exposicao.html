@@ -72,7 +72,8 @@
                     <h2 class="featurette-heading"  th:text="${exposicao.getTitulo()}"><span
                             class="text-muted">Subtítulo</span></h2>
                     <p class="lead"   th:text="${exposicao.getDescricao()}">Descrição</p>
-                    <p class="lead">Data de Início: <span th:text="${exposicao.getDataInicio()}"></span><br /> - Data de Fim: <span th:text="${exposicao.getDataFim()}"></span></p>
+                    <p class="lead">Data de Início: <span th:text="${exposicao.getDataInicio()}"></span><br />Data de Fim: <span th:text="${exposicao.getDataFim()}"></span></p>
+                    <p class="lead">Sala: <span th:text="${exposicao.getSala()}"></span></p>
                 </div>
                 <div class="col-md-5 order-md-1">
                     <img class="featurette-image img-fluid mx-auto" th:src="${exposicao.getImagem()}"

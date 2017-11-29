@@ -67,10 +67,17 @@
                     <input type="text" class="form-control" id="titulo" th:field="*{titulo}"
                            placeholder="Digite o nome do restaurador"/>
                 </div>
-                <div class="form-group">
-                    <label for="temporario">Tipo</label>
-                    <input type="text" class="form-control" id="temporario" th:field="*{temporario}"
-                           placeholder="Digite o tipo da obra (permanente = true/temporária = false)"/>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="temporario" id="temporario" value="true" th:field="*{temporario}"/>
+                        Temporário
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="temporario" id="temporario" value="false" th:field="*{temporario}"/>
+                        Permanente
+                    </label>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
@@ -79,17 +86,17 @@
                 </div>
                 <div class="form-group">
                     <label for="sala">Hora da retirada</label>
-                    <input type="text" class="form-control" id="sala" th:field="*{sala}"
+                    <input type="time" class="form-control" id="sala" th:field="*{sala}"
                            placeholder="Digite a hora de retirada da obra"/>
                 </div>
                 <div class="form-group">
                     <label for="dataInicio">Data de Início</label>
-                    <input type="text" class="form-control" id="dataInicio" th:field="*{dataInicio}"
+                    <input type="date" class="form-control" id="dataInicio" th:field="*{dataInicio}"
                            placeholder="Digite a data de início da restauração"/>
                 </div>
                 <div class="form-group">
                     <label for="datafim">Data de Fim</label>
-                    <input type="text" class="form-control" id="dataFim" th:field="*{dataFim}"
+                    <input type="date" class="form-control" id="dataFim" th:field="*{dataFim}"
                            placeholder="Digite a data de fim da restauração"/>
                 </div>
                 <div class="form-group">
@@ -122,7 +129,10 @@
             <tr th:each="restauracao : ${restauracaos}">
                 <td th:text="${restauracao.id}">ID</td>
                 <td th:text="${restauracao.titulo}">Título</td>
-                <td th:text="${restauracao.temporario}">Tipo</td>
+                <td>
+                    <div th:if="${restauracao.temporario}"><p>Temporário</p></div>
+                    <div th:unless="${restauracao.temporario}"><p>Permanente</p></div>
+                </td>
                 <td th:text="${restauracao.descricao}">Descrição</td>
                 <td th:text="${restauracao.sala}">Hora da Retirada</td>
                 <td th:text="${restauracao.dataInicio}">Data do Início</td>
