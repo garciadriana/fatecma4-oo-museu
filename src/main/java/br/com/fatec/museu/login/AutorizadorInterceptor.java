@@ -11,7 +11,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object controller) throws Exception {
-        System.out.println("o usuario esta logado, "+ (Boolean)request.getSession().getAttribute("usuarioLogado"));
+        System.out.println("o usuario esta logado, "+ request.getSession().getAttribute("usuarioLogado"));
         if(request.getSession().getAttribute("usuarioLogado") == null){
             if(request.getRequestURI().contains("admin")){
                 response.sendRedirect("/");
