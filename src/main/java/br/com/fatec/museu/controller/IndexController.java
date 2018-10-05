@@ -31,7 +31,7 @@ public class IndexController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute Usuario usuario, HttpSession session) {
-        if("admin".equals(usuario.getUsuario()) && "123".equals(usuario.getSenha())){
+        if("admin".equals(usuario.getUsuario()) && "admin".equals(usuario.getSenha())){
             session.setAttribute("usuarioLogado",true);
             return "redirect:/admin/obra";
         }

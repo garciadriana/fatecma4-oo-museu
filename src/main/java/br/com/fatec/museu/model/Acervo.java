@@ -40,12 +40,12 @@ public class Acervo {
         this.descricao = descricao;
     }
 
-    public String getImagem() {
-        return imagem;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public String getLocal() {
@@ -56,12 +56,12 @@ public class Acervo {
         this.local = local;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     @Override
